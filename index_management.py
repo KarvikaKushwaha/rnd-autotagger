@@ -3,13 +3,13 @@ from elasticsearch import Elasticsearch
 import json
 import es_management as es1
 import getDataFromApi as gf
-from constant import index_name, ELASTIC_SEARCH_HOST
+from constant import index_name, ELASTIC_SEARCH_HOST, similarity_index_name
 es = Elasticsearch([ELASTIC_SEARCH_HOST])
 
 result=[]
 md5s = []
 elasticquery={"query":{"match_all":{}},"size":10000}
-res = es.search(index="similarity_etl_auto1",body=elasticquery)
+res = es.search(index = similarity_index_name,body = elasticquery)
 
 if not os.path.exists("indexResult.json"):
     try:
